@@ -1,0 +1,36 @@
+{
+  "name": "react-ssr-seed",
+  "version": "0.0.1",
+  "description": "a react ssr project for learning.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Copyes/react-ssr-seed.git"
+  },
+  "keywords": [
+    "node",
+    "react",
+    "ssr",
+    "router"
+  ],
+  "author": "lip",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Copyes/react-ssr-seed/issues"
+  },
+  "homepage": "https://github.com/Copyes/react-ssr-seed#readme",
+  "devDependencies": {
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    "ejs": "^3.0.1",
+    "koa-body": "^4.1.1",
+    "koa-bodyparser": "^4.2.1",
+    "koa-json": "^2.0.2",
+    "koa2": "^2.0.0-alpha.7"
+  }
+}
