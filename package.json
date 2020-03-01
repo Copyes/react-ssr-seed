@@ -4,6 +4,8 @@
   "description": "a react ssr project for learning.",
   "main": "index.js",
   "scripts": {
+    "wds:watch": "",
+    "svr:watch": "",
     "dev": "cross-env BABEL_ENV=node node ./webpack/scripts/index.js && node ./webpack/scripts/free-port.js && cross-env BABEL_ENV=development node ./webpack/scripts/start.js --scripts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
