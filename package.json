@@ -4,11 +4,9 @@
   "description": "a react ssr project for learning.",
   "main": "index.js",
   "scripts": {
-    "wds:watch": "",
-    "fe:watch": "webpack --config ./webpack/webpack.dev.config.js",
-    "svr:watch": "node ./webpack/script/server-code-watch.js",
-    "dev": "node ./webpack/scripts/start.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node webpack/scripts/start.js",
+    "fe:watch": "webpack --config  ./webpack/webpack.dev.config.js --watch",
+    "svr:watch": "node ./webpack/scripts/svr-code-watch.js"
   },
   "repository": {
     "type": "git",
@@ -30,27 +28,28 @@
     "@babel/cli": "^7.7.4",
     "@babel/core": "^7.7.4",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
-    "@babel/plugin-syntax-dynamic-import": "^7.7.4",
-    "@babel/plugin-transform-runtime": "^7.7.4",
-    "@babel/polyfill": "^7.7.0",
     "@babel/preset-env": "^7.7.4",
     "@babel/preset-react": "^7.7.4",
-    "@babel/runtime": "^7.7.4",
-    "@babel/runtime-corejs3": "^7.7.4",
+    "babel-loader": "^8.0.6",
     "chalk": "^3.0.0",
-    "chokidar": "^3.3.0",
-    "clean-webpack-plugin": "^3.0.0",
-    "cross-env": "^6.0.3",
+    "koa2": "^2.0.0-alpha.7",
+    "npm-run-all": "^4.1.5",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "supervisor": "^0.12.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.9.0",
-    "webpack-node-externals": "^1.7.2"
+    "webpack-node-externals": "^1.7.2",
+    "xl_close_port": "^1.0.1",
+    "koa-static": "^5.0.0",
+    "cross-env": "^6.0.3"
   },
   "dependencies": {
     "ejs": "^3.0.1",
     "koa-body": "^4.1.1",
     "koa-bodyparser": "^4.2.1",
     "koa-json": "^2.0.2",
+    "koa-static": "^5.0.0",
     "koa2": "^2.0.0-alpha.7",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"

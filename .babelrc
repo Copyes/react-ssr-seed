@@ -1,52 +1,40 @@
 {
   "env": {
-    "node": {
-      "preset": [
-        [
-          "@babel/preset-env",
-          {
-            "target": { "node": "current" }
-          },
-        ],
-        "@babel/preset-react"
-      ],
-      "plugins": [
-        [
-          "@babel/plugin-proposal-class-properties",
-          {
-              "loose": true
-          }
-        ],
-        "@babel/plugin-syntax-dynamic-import"
-      ]
-    },
-    "development": {
-      "presets": [
-        [
-          "@babel/preset-env",
-          {
-            "targets": {
-              "browsers": [
-                ">1%","last 2 versions",
-                "not ie <= 8"
-              ]
-            },
-            "useBuiltIns": "usage",
-            "corejs": 3
-          }
-        ],
-        "@babel/preset-react"
-      ],
-      "plugins": [
-        "@babel/plugin-syntax-dynamic-import",
-        "@babel/plugin-proposal-class-properties",
-        [
-          "@babel/plugin-transform-runtime",
-          {
-            "corejs": 3
-          }
-        ]
-      ]
-    }
+      "node":{
+          "presets": [
+              [
+                  "@babel/preset-env",
+                  {
+                      "targets":{
+                          "node":"current"
+                      }
+                  }
+              ],
+              "@babel/preset-react"
+          ],
+          "plugins": [
+              "@babel/plugin-proposal-class-properties"
+          ]
+      },
+      "development": {
+          "presets": [
+              [
+                  "@babel/preset-env",
+                  {
+                      "targets": {
+                          "browsers": [
+                              ">1%",
+                              "last 2 versions",
+                              "not ie <= 8"
+                          ]
+                      }
+                  }
+              ],
+              "@babel/preset-react"
+          ],
+          "plugins": [
+              "@babel/plugin-proposal-class-properties"
+          ]
+      }
   }
 }

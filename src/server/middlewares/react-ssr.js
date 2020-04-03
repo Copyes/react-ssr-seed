@@ -1,53 +1,31 @@
+// /src/server/middlewares/react-ssr.js
+
+//完成 react ssr 工作的中间件
+//引入Index 组件
 import React from 'react';
-import { renderToString } from 'react-dom/server';
-import { StaticRouter, Route, matchPath } from 'react-router';
-import { renderRoutes } from 'react-router-config';
-import Config from '../../share/config';
 import Index from '../../client/pages/index';
+import { renderToString} from 'react-dom/server';
 
-export default async (ctx, next) => {
-  const path = ctx.request.path;
+export default  (ctx,next)=>{
 
+    console.log('ctx.request.path', ctx.request.path);
+    console.log('ctx.request.url', ctx.request.url);
 
-  // the root
-  if(path.indexOf('.') > -1) {
-    ctx.body = null;
-    return next();
-  }
-
-  console.log(`ctx.request.path: ${ctx.request.path}`);
-
-  // let html = '';
-  // let fetchResult = {};
-  // let tdk = {
-  //   title: '默认标题',
-  //   keywords: '默认关键词',
-  //   description: '默认描述'
-  // };
-
-
-
-  // if(Config._IS_SSR_) {
-
-  // }
-
-  // const assetsMap = getAssets();
-
-  let html = renderToString(<Index />);
-  ctx.body = `
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
+    const html = renderToString(<Index/>);
+    ctx.body=`<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-  </head>
-  <body>
-    <div id='root'>
-      ${html}
+    <title>my react ssr</title>
+</head>
+<body>
+    <div id="root">
+       ${html} <span>测试内容</span>
     </div>
-  </body>
-  </html>
-  `
+</body>
+</html>
+<script type="text/javascript"  src="index.js"></script>
+`;
+
+    return next();
 }

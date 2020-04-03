@@ -1,8 +1,12 @@
-const localIP = process.argv[process.argv.length - 1]; // 获取本地ip地址
-const { nsPort } = require('../../src/share/config');
+//开发环境 node 服务启动入口
 
-global._LOCAL_IP_ = localIP;
+const proConfig = require('../../src/share/pro-config');
 
-require('./free-port')(nsPort);
-require('../../dist/server/app.js');
+//node server port
+const nodeServerPort = proConfig.nodeServerPort;
 
+
+//启动前检查端口是否占用，杀掉占用端口的进程
+require('./free-port')(nodeServerPort);
+
+require('../../dist/server/app');

@@ -1,15 +1,19 @@
+//src/client/pages/index/index.js
+//index 组件
+
 import React from 'react';
 
+//组件
 export default class Index extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+    constructor(props) {
+        super(props);
+    }
+    handlerClick(){
+        alert('一起来玩 react 服务端渲染..');
+    }
 
-  handleClick = () => {
-    console.log(1111);
-  }
-
-  render() {
-    return <h1 onClick={this.handleClick}>click here</h1>
-  }
+    render() {
+        const str='hello,world.';
+        return <div onClick={this.handlerClick}>{str}</div>
+    }
 }

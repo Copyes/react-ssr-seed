@@ -1,3 +1,5 @@
+//用于开发环境的构建过程中的常量
+
 module.exports = {
-  SVR_CODE_COMPLETED:'SVR_CODE_COMPLETED', //服务端代码编译完成
+    SVRCODECOMPLETED:'SVRCODECOMPLETED',//服务端代码编译完成
 }
