@@ -8,6 +8,17 @@ import ReactDom from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from '../router/index';
 import routeList from '../router/routes-config';
+import matchRoute from '../../share/match-route';
+
+
+let initialData = JSON.parse(document.getElementById('ssrTextInitData').value);
+//查找路由
+let matchResult = matchRoute(document.location.pathname, routeList);
+let { targetRoute } = matchResult;
+if (targetRoute) {
+    //设置组件初始化数据
+    targetRoute.initialData = initialData;
+}
 //渲染index 组件1
 ReactDom.hydrate(
     <BrowserRouter>

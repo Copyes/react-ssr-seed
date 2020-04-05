@@ -1,19 +1,30 @@
-import Layout from '../app/layout';
+// src/client/router/indxex.js
+//路由配置文件
 import React  from 'react';
-import { Route, Switch } from 'react-router-dom';
+import Layout from '../app/layout';
 
-//服务端也会用到所以通过参数的方式将配置传递进来
+import { Route, Switch, BrowserRouter,Redirect } from 'react-router-dom';
+
+function Page404() {
+    return <div>404拉 </div>
+}
+
 function App({routeList}) {
     return (
-        <Layout> //公共组件
-            <Switch>
-                {
-                    routeList.map(item=>{
-                            return <Route key={item.path} {...item}></Route>
-                    })
-                }
-            </Switch>
-        </Layout>
+      <Layout> 
+          <Switch>
+          {
+            routeList.map(item=>{
+                return item.initialData 
+                ? <Route key={item.path} exact={item.exact} path={item.path}  render={(props)=>{
+                    return <item.component {...props} initialData={item.initialData}></item.component>
+                }}></Route> 
+                : <Route key={item.path} {...item}></Route>
+            })
+          }
+          <Route to="*" component={Page404}></Route>
+      </Switch>
+      </Layout>
     );
 }
 

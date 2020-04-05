@@ -24,5 +24,10 @@ module.exports = {
             exclude: /node_modules/
         }
         ]
-    }
+    },
+    plugins: [
+        new webpack.DefinePlugin({
+            '__SERVER__':true
+        })
+    ]
 }

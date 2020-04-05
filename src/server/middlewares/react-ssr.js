@@ -3,20 +3,51 @@
 //完成 react ssr 工作的中间件
 //引入Index 组件
 import React from 'react';
-import { renderToString} from 'react-dom/server';
+import { renderToString } from 'react-dom/server';
+
 import { StaticRouter, Route, matchPath} from 'react-router';
-import App from '../../client/router/index';
+// import { renderRoutes} from 'react-router-config';
+
+// import Layout from '../../client/app/layout';//如果有 layout 组件，也需要一起转换为 html
 import routeList from '../../client/router/routes-config';
 
-export default  (ctx,next)=>{
+//自定义 provider 用来传递数据
+// import Provider from '../../client/app/provider';
 
-    console.log('ctx.request.path', ctx.request.path);
-    console.log('ctx.request.url', ctx.request.url);
+import matchRoute from '../../share/match-route';
+
+import App from '../../client/router/index';
+
+export default  async (ctx,next)=>{
+
     const path = ctx.request.path;
 
-    const html = renderToString(<StaticRouter location={path}>
+    if(path.indexOf('.')>-1){
+        ctx.body=null;
+        return next();
+    }
+
+    console.log('ctx.request.path.', ctx.request.path);
+
+    //查找到的目标路由对象
+    let matchResult = matchRoute(path,routeList);
+    let { targetRoute, targetMatch }=matchResult;
+
+    //得到数据
+    let fetchDataFn = targetRoute.component.getInitialProps;
+    let fetchResult = {};
+    if(fetchDataFn){
+        fetchResult = await fetchDataFn();
+    }
+
+    //将预取数据在这里传递过去 组内通过props.staticContext获取
+    const context = {
+        initialData: fetchResult
+    };
+
+    const html = renderToString(<StaticRouter location={path} context={context}>
         <App routeList={routeList}></App>
-  </StaticRouter>);
+    </StaticRouter>);
 
     ctx.body=`<!DOCTYPE html>
 <html lang="en">
@@ -26,12 +57,13 @@ export default  (ctx,next)=>{
 </head>
 <body>
     <div id="root">
-       ${html} <span>测试内容</span>
+       ${html}
     </div>
+    <textarea id="ssrTextInitData" style="display:none;">
+    ${JSON.stringify(fetchResult)}
+    </textarea>
 </body>
-</html>
-<script type="text/javascript"  src="index.js"></script>
-`;
+</html><script type="text/javascript"  src="/index.js"></script>`;
 
-    return next();
+    await next();
 }

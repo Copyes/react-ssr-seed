@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export default class Layout extends React.Component {
   constructor(props) {
@@ -8,9 +8,8 @@ export default class Layout extends React.Component {
 
   render() {
     return <div>
-      <Link to="/index">首页</Link>
-      <br/>
-      <Link to="/artice">列表页</Link>
+      <NavLink to="/index">首页</NavLink>
+      <NavLink to="/list"  style={{ marginLeft: "10px" }}>列表页</NavLink>
       <div>{this.props.children}</div>
     </div>
   }
