@@ -3,15 +3,21 @@
 //完成 react ssr 工作的中间件
 //引入Index 组件
 import React from 'react';
-import Index from '../../client/pages/index';
 import { renderToString} from 'react-dom/server';
+import { StaticRouter, Route, matchPath} from 'react-router';
+import App from '../../client/router/index';
+import routeList from '../../client/router/routes-config';
 
 export default  (ctx,next)=>{
 
     console.log('ctx.request.path', ctx.request.path);
     console.log('ctx.request.url', ctx.request.url);
+    const path = ctx.request.path;
 
-    const html = renderToString(<Index/>);
+    const html = renderToString(<StaticRouter location={path}>
+        <App routeList={routeList}></App>
+  </StaticRouter>);
+
     ctx.body=`<!DOCTYPE html>
 <html lang="en">
 <head>
